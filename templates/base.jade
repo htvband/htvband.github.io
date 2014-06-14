@@ -1,0 +1,42 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title HTV band
+    meta(name='viewport' , content='width=device-width' , initial-scale='1.0')
+    meta(name='description' , content='HTV band')
+    // fav and touch icons
+    link(rel='shortcut icon' , href='img/favicon.ico')
+    link(rel='stylesheet' , href='css/main.css' , type='text/css')    
+
+  body#index
+    header
+      div#banner.body
+        div(class='logo')
+          a(href='index.html')
+            img(src='img/logo.png' , height='90px', alt='Logo HTV Band')
+
+        block vars
+
+        input#mobile-toggle(type='checkbox')
+        label.mobile-toggle(for='mobile-toggle', onclick='')
+
+        -var menu = {'HTV band': 'index.html', 'media': 'media.html', 'shows': 'shows.html', 'contact': 'contact.html'};
+        nav
+          ul
+            each val,key in menu
+                if active === key
+                  li.active
+                    a(href=val, title=key)= key
+                else
+                  li
+                    a(href=val, title=key)= key
+              
+    block content
+
+    // // content (ie markdown) here
+    // footer#contentinfo.body
+    //   p haaoo
+  
+    //include 'analytics.html'
+    // include 'piwik.html'

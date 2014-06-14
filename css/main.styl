@@ -1,0 +1,371 @@
+@import url("reset.css")
+@import url("typogrify.css")
+//@import url(fonts.googleapis.com/css?family=Yanone+Kaffeesatz&subset=latin);
+
+body
+  margin 0
+  padding 0
+  background-color #000
+  color #000305
+  font-size 87.5%
+  font-family 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+  line-height 1.429
+  text-align: left
+
+h1
+  font-size: 2.8em
+h2
+  font-size: 2.6em
+h3
+  font-size: 2.4em
+h4
+  font-size: 2.2em
+h5
+  font-size: 2.0em
+h6
+  font-size: 1.8em
+
+h1, h2, h3, h4, h5, h6
+  font-weight: 400
+  line-height: 1.1
+  margin-bottom: .8em
+  font-family: 'Yanone Kaffeesatz', arial, serif
+
+h3, h4, h5, h6
+  margin-top: .8em
+	
+hr
+  border: 2px solid #EEEEEE
+
+h3
+  border-bottom: 1px solid #000
+
+/* Anchors */
+
+// a {outline: 0;}
+// a img {border: 0px; text-decoration: none;}
+// a:link, a:visited {
+// 	color: #C74350;
+// 	padding: 0 1px;
+// 	text-decoration: underline;
+// }
+// a:hover, a:active {
+// 	color: #fff;
+// 	text-decoration: none;
+// }
+
+// h1 a:hover {
+//     background-color: inherit
+// }
+	
+/* Paragraphs */
+div.line-block, p
+  margin-top: 1em;
+  margin-bottom: 1em;
+
+/* Lists */
+// ul
+//   list-style: outside disc;
+//   margin: 0em 0 0 1.5em;
+
+
+// ol {
+// 	list-style: outside decimal;
+// 	margin: 0em 0 0 1.5em;
+// }
+
+li
+  margin-top: 0.5em;
+
+/* HTML5 tags */
+
+header, section, footer,
+aside, nav, article, figure
+  display: block;
+
+/***** Layout *****/
+.body
+  clear: both;
+  margin: 0 auto;
+  width: 100%;
+
+section.body .subsection
+  clear: both;
+  display: block;
+  margin: 0 auto;
+  width: 760px;
+  margin-top: 20px;
+
+section.body .subsection img
+  margin-bottom: 20px;
+
+section.body .subsection div p
+  clear: both;
+
+section.body .subsection img, section.body .subsection div
+  float: left;
+
+section.body .subsection div
+  margin-left: 20px;
+  margin-bottom: 20px;
+  width: 70%;
+
+section.body .subsection div .icons-gallery
+  float: left;
+  margin: 0 auto;
+  width: 100%;
+
+/*	Header */
+
+header
+  position: fixed;
+  width: 100%;
+  background: #000;
+  box-shadow: 0px 2px 6px #303030;
+  height: 100px;
+
+/* Banner, main nav */
+
+#banner
+  margin: 0 auto;
+  padding: 0;
+  width: 800px;
+
+#banner .logo
+  float: left;
+  margin-top: 4px;
+
+#banner nav
+  font-size: 1.6em;
+  float: right;
+  display: block;
+  margin: 1.5em auto auto 1.5em;
+  padding: 0;
+  text-align: center;
+  max-width: 480px;
+
+#banner nav ul
+  float: left;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+#banner nav li
+  float: left;
+  display: inline;
+  margin: 0;
+
+#banner nav li:after
+  content: " / ";
+  color: #fff;
+
+#banner nav li:last-child:after
+  content: "";
+  display: none;
+
+#banner nav a
+  color: #fff;
+  display: inline-block;
+  margin: 0px 0.5em;
+  text-decoration: none;
+  font-weight: bold;
+
+#banner nav a:hover, #banner nav a:active,
+#banner nav ul li.active a:link
+  border-bottom: 2px solid #fff;
+
+/* Mobile menu */
+
+#mobile-toggle, .mobile-toggle
+  display: none;
+
+/* Body */
+
+#main
+  width: 100%;
+  border-bottom: 1px dashed #303030;
+
+#content
+  margin-bottom: 0.8em;
+  overflow: hidden;
+  width: 760px;
+
+#page-intro
+  padding: 130px 0;
+  margin: 0 auto;
+  text-align: center;
+
+#main.home #page-intro *
+  color: #000;
+
+#page-intro h1,
+#page-intro h2
+  width: 760px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+
+#page-intro h2
+  padding-top: 10px;
+  line-height: 1.2em;
+  font-size: 1.5em;
+  color: #404040;
+
+#page-intro img
+  background-color: #000;
+  padding: 20px;
+
+#main.bg-white
+  background-color: #fff;
+  color: #000;
+
+#main.bg-white h1
+  color: #000;
+
+#main.bg-grey
+  background-color: #e8e8e8;
+
+#main.bg-grey h1
+  color: #000;
+
+#main.bg-blue
+  background-color: #6699ff;
+  color: #fff;
+
+#main.bg-blue h1,
+#main.bg-blue h2,
+#main.bg-blue p
+  color: #000;
+
+/*  Footer */
+
+#contentinfo
+  padding-bottom: 2em;
+  text-align: right;
+
+/* Responsive */
+
+
+@media screen and (max-width: 960px)
+  body
+    background-color #fff
+    
+  h1
+    font-size: 2em
+  h2
+    font-size: 1.571em
+  h3
+    font-size: 1.429em
+  h4
+    font-size: 1.286em
+  h5
+    font-size: 1.143em
+  h6
+    font-size: 1em
+    
+  header
+    width: 96%
+    max-width: 100%
+    min-width: 100%
+    padding: 0
+    height: 100px
+    position: relative
+
+  #main
+    float: none;
+    border: none
+
+  #page-intro
+    position: absolute
+    top: 100px
+    width: 100%
+    max-width: 100%
+    padding: 10px 0
+
+  #page-intro h1, #page-intro h2
+    width: 100%
+    min-width: 100%
+    max-width: 100%
+    margin: 0;
+    font-size: 2em
+
+  header #banner
+    text-align: center
+    float: left
+
+  header #banner .logo
+    float: none
+
+  .body
+    clear: both
+    margin: 0 auto
+    min-width: 100%
+    max-width: 100%
+
+  #banner nav
+    display: none
+    width: 100%
+    max-width: 100%
+    margin: 0
+    margin-top: -40px
+
+  #page-intro img
+    display: none
+
+  #mobile-toggle
+    display: none
+    margin-top: 50px
+    
+  #mobile-toggle:checked ~ nav, #mobile-toggle:checked ~ nav ul
+    display: block
+    opacity: 1
+
+  .mobile-toggle
+    cursor: pointer
+    display: block
+    position: relative
+
+  #mobile-toggle:checked + .mobile-toggle:after
+    content: "close menu"
+
+  .mobile-toggle:after
+    display: block
+    /* -moz-box-sizing: border-box; */
+    background: none repeat scroll 0 0 #51C1F1
+    color: #fff
+    content: "open menu"
+    margin: 50px auto
+    width: 20%
+    padding: 4px 10px 8px 10px
+    text-align: center
+    background-color: #000
+    
+  #banner nav ul
+    display: none
+    float: none
+    margin-bottom: 20px
+
+  #banner nav li:after
+    content: none;
+
+  nav ul li
+    background-color: #000
+    color: #fff
+    width: 100%
+    text-align: center
+    padding: 6px 0
+    font-size: 0.8em
+    
+  #banner nav ul li a
+    color: #fff
+    font-weight: normal
+
+  #banner nav ul li a:hover
+    border: none
+
+  section.body .subsection
+    width: 50%
+
+//@media screen and (max-width: 320px)    
+@media screen and (max-width: 340px)
+  #page-intro h1
+    font-size: 1.2em
