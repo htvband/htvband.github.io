@@ -1,0 +1,3 @@
+[submodule "modules/nanoGALLERY"]
+	path = modules/nanoGALLERY
+	url = git@bitbucket.org:htvband/module_nanoGALLERY
