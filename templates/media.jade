@@ -1,8 +1,23 @@
 block vars
   - var active = 'media';
+
 extends base
+
+prepend head
+  link(rel='stylesheet' , href='css/style.css' , type='text/css')    
+  script(type='text/javascript', src='js/jquery.min.js')
+  script(type='text/javascript', src='js/jquery.nanogallery.min.js')
+  script(type='text/javascript', src='js/site.js')
+  link(rel="stylesheet", href="css/nanogallery/nanogallery.css", type="text/css")  
+  link(rel="stylesheet", href="css/nanogallery/themes/light/nanogallery_light.css", type="text/css")
+  //script(type="text/javascript", src="http://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.0.4/jquery.imagesloaded.min.js")
+  link(rel="stylesheet", href="http://cdnjs.cloudflare.com/ajax/libs/foundation/5.2.2/css/foundation.min.css", type="text/css")
 
 block content
   div#main.body.home.bg-white
     div#page-intro
     h1 Media page
+    section#content.bg-white
+      #nanoGallery
+        each item in pictureFiles
+          a(href=item['src'], data-ngthumb=item['srct'])

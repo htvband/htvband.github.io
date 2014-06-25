@@ -2,6 +2,7 @@
 // The source: https://gist.github.com/andrewdc/10659265
 
 // TODO
+// 0. !!! See next TODO-tag !!!
 // 1. Test of gulp.dest('./out') de "out" directory creeert (bootstrap).
 // 2. Debug mode: http://symmetrycode.com/debug-mode-in-gulp/
 // 3. Sorta livereload: http://symmetrycode.com/super-simple-static-server-in-gulp/
@@ -29,7 +30,8 @@ var debug = false;
 
 var paths = {
   templates: './templates/',
-  stylus: './css/'
+  stylus: './css/',
+  javascript: './js/'
 };
 
 // fileinclude: grab partials from templates and render out html files
@@ -49,31 +51,36 @@ gulp.task('fileinclude', function() {
 });
 
 // convert our markdown to html
-gulp.task('markdown', function () {
-    return gulp.src('*.md')
-        .pipe(marked())
-        .pipe(gulp.dest('./out'));
-});
+// gulp.task('markdown', function () {
+//     return gulp.src('*.md')
+//         .pipe(marked())
+//         .pipe(gulp.dest('./out'));
+// });
 
-// include all HTML files from prebuild into our site menu
+// TODO:
+// 1. Think about separation for LOCALS used in the media page -
+//    and possible other pages too.  Should we create analogous
+//    tasks for each page??? Which could bleed DRY.
+// 2. Find a Gulp plugin which can create these vars (i.e. pictureFiles),
+//    by processing a fileglob.  
+//    Plugins maybe:
+//    - https://github.com/adam-lynch/glob-to-vinyl
+//    - https://www.npmjs.org/package/vinyl-transform (see inject JS into file)
+//    - https://www.npmjs.org/package/gulp-filter
 gulp.task('jade', function () {
-    var YOUR_LOCALS = {};
+    var pictureFiles = [
+	{src: 'pictures/beeldig/john1.jpg', srct: 'pictures/beeldig/john1.jpg', title: 'image 1', description: 'Description 1'}, 
+	{src: 'pictures/beeldig/onstage1.jpg', srct: 'pictures/beeldig/onstage1.jpg', title: 'image 2'}, 
+	{src: 'pictures/beeldig/pose1.jpg', srct: 'pictures/beeldig/pose1.jpg', title: 'image 3'}
+    ];
+  
+    var YOUR_LOCALS = {	pictureFiles: pictureFiles };
+  
     return gulp.src(path.join(paths.templates,'*.jade'))
       .pipe(jade({locals: YOUR_LOCALS}))
       .pipe(gulp.dest('./'))
       .pipe(connect.reload());
 });
-
-//  Sass: compile sass to css task - uses Libsass
-//===========================================
-// gulp.task('sass', function() {
-//   return gulp.src(path.join(paths.sass, '*.scss'))
-//     .pipe(sass({ style: 'expanded', sourceComments: 'map', errLogToConsole: true}))
-//     .pipe(autoprefixer('last 2 version', "> 1%", 'ie 8', 'ie 9'))
-//     .pipe(gulp.dest('css'))
-//     .pipe(livereload(server))
-//     .pipe(notify({ message: 'LibSass files dropped!' }));
-// });
 
 //  Stylus: compile sass to css task - uses Libsass
 //===========================================
@@ -85,18 +92,11 @@ gulp.task('stylus', function() {
     .pipe(connect.reload());  
 });
 
-//  Sass: compile sass to css task
-//===========================================
-// gulp.task('rubysass', function() {
-//   return gulp.src(path.join(paths.sass, '*.scss'))
-//     .pipe(plumber())
-//     .pipe(rubysass({ sourcemap: true, style: 'expanded'}))
-//     .pipe(autoprefixer('last 2 version', "> 1%", 'ie 8', 'ie 9'))
-//     .pipe(gulp.dest('css'))
-//     .pipe(livereload(server))
-//     .pipe(notify({ message: 'Ruby Sass files dropped!' }));
-// });
-
+gulp.task('js-reload', function() {
+  return gulp.src(path.join(paths.javascript, '*.js'))
+    .pipe(gulp.dest('./js/'))
+    .pipe(connect.reload());
+});
 
 //  Connect: sever task
 //===========================================
@@ -129,6 +129,7 @@ gulp.task('connect', function() {
 gulp.task('watch', ['connect'], function() {
   gulp.watch(path.join(paths.stylus, '*.styl'), ['stylus']);
   gulp.watch(path.join(paths.templates, '**/*.jade'), ['jade']);
+  gulp.watch(path.join(paths.javascript, '**/*.js'), ['js-reload']);
 });
 
 //  Watch and Livereload using Libsass
