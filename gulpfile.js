@@ -58,20 +58,23 @@ gulp.task('fileinclude', function() {
 // });
 
 // TODO:
+// 1. Replace nanoGallery with Justified Gallery, which has a 90% smaller
+//  codebase. https://github.com/miromannino/Justified-Gallery/blob/master/src/js/justifiedGallery.js
 // 1. Think about separation for LOCALS used in the media page -
 //    and possible other pages too.  Should we create analogous
 //    tasks for each page??? Which could bleed DRY.
 // 2. Find a Gulp plugin which can create these vars (i.e. pictureFiles),
-//    by processing a fileglob.  
+//    by processing a fileglob.  And even spread it into albums by 
+//    directory node(s).
 //    Plugins maybe:
 //    - https://github.com/adam-lynch/glob-to-vinyl
 //    - https://www.npmjs.org/package/vinyl-transform (see inject JS into file)
 //    - https://www.npmjs.org/package/gulp-filter
 gulp.task('jade', function () {
     var pictureFiles = [
-	{src: 'pictures/beeldig/john1.jpg', srct: 'pictures/beeldig/john1.jpg', title: 'image 1', description: 'Description 1'}, 
-	{src: 'pictures/beeldig/onstage1.jpg', srct: 'pictures/beeldig/onstage1.jpg', title: 'image 2'}, 
-	{src: 'pictures/beeldig/pose1.jpg', srct: 'pictures/beeldig/pose1.jpg', title: 'image 3'}
+	{src: 'pictures/beeldig/onstage1.jpg', srct: 'pictures/beeldig/onstage1.jpg', title: 'Blazen tonen in de ruimte', ngID: '1', ngAlbumID: '0', ngkind: 'album'},
+	{src: 'pictures/beeldig/john1.jpg', srct: 'pictures/beeldig/john1.jpg', title: 'image 1', ngID: '2'}, 
+	{src: 'pictures/beeldig/pose1.jpg', srct: 'pictures/beeldig/pose1.jpg', title: 'image 3', ngID: '3', ngAlbumID: '1'}
     ];
   
     var YOUR_LOCALS = {	pictureFiles: pictureFiles };
