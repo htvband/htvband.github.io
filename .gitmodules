@@ -1,0 +1,3 @@
+[submodule "modules/justified-gallery"]
+	path = modules/justified-gallery
+	url = git@bitbucket.org:htvband/module_justified-gallery
