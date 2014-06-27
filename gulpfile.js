@@ -72,9 +72,9 @@ gulp.task('fileinclude', function() {
 //    - https://www.npmjs.org/package/gulp-filter
 gulp.task('jade', function () {
     var pictureFiles = [
-	{src: 'pictures/beeldig/onstage1.jpg', srct: 'pictures/beeldig/onstage1.jpg', title: 'Blazen tonen in de ruimte', ngID: '1', ngAlbumID: '0', ngkind: 'album'},
-	{src: 'pictures/beeldig/john1.jpg', srct: 'pictures/beeldig/john1.jpg', title: 'image 1', ngID: '2'}, 
-	{src: 'pictures/beeldig/pose1.jpg', srct: 'pictures/beeldig/pose1.jpg', title: 'image 3', ngID: '3', ngAlbumID: '1'}
+	{src: 'pictures/beeldig/onstage1.jpg', src_t: 'pictures/beeldig/onstage1.jpg', rel: 'beeldig'},
+	{src: 'pictures/beeldig/john1.jpg', src_t: 'pictures/beeldig/john1.jpg', rel: 'beeldig'},
+	{src: 'pictures/beeldig/pose1.jpg', src_t: 'pictures/beeldig/pose1.jpg', rel: 'beeldig'}
     ];
   
     var YOUR_LOCALS = {	pictureFiles: pictureFiles };

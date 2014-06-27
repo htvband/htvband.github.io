@@ -22,5 +22,12 @@ DONE (script)
 # cd tmp
 # git clone git@bitbucket.org:htvband/module_nanogallery.git
 # cd module_nanoGALLERY
-# git remote add upstream  https://github.com/Kris-B/nanoGALLERY.git   
+# git remote add upstream  https://github.com/Kris-B/nanoGALLERY.git
+# git fetch upstream
+# git checkout -b master
+# git push --all
+# cd modules
 # git submodule add git@bitbucket.org:htvband/module_nanoGALLERY ./modules/nanoGALLERY
+# git add .
+# git commit
+# git push
