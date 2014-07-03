@@ -5,6 +5,9 @@
 // 1. Test of gulp.dest('./out') de "out" directory creeert (bootstrap).
 // 2. Debug mode: http://symmetrycode.com/debug-mode-in-gulp/
 // 3. Sorta livereload: http://symmetrycode.com/super-simple-static-server-in-gulp/
+// 4. Deploy:
+//    https://github.com/rowoot/gulp-gh-pages
+//    https://gist.github.com/koistya/9e7045e5b777d5bc4922
 
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
