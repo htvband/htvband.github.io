@@ -1,5 +1,5 @@
 jQuery(document).ready(function () {
-  jQuery('#gallery').on('jg.rowflush', function() {
+  jQuery('.gallery').on('jg.rowflush', function() {
       jQuery(this).find("> a").colorbox({
 	  //rel: 'beeldig', 
 	  maxWidth : "85%",

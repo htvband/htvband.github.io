@@ -2,7 +2,6 @@
 // The source: https://gist.github.com/andrewdc/10659265
 
 // TODO
-// 0. !!! See next TODO-tag !!!
 // 1. Test of gulp.dest('./out') de "out" directory creeert (bootstrap).
 // 2. Debug mode: http://symmetrycode.com/debug-mode-in-gulp/
 // 3. Sorta livereload: http://symmetrycode.com/super-simple-static-server-in-gulp/
@@ -24,7 +23,11 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     server = lr(),
     jade = require('gulp-jade'),
-    path = require("path");
+    path = require("path"),
+
+    glob = require('glob');
+    fs = require('fs');
+
 
 var debug = false;
 
@@ -58,31 +61,47 @@ gulp.task('fileinclude', function() {
 // });
 
 // TODO:
-// 1. Replace nanoGallery with Justified Gallery, which has a 90% smaller
-//  codebase. https://github.com/miromannino/Justified-Gallery/blob/master/src/js/justifiedGallery.js
 // 1. Think about separation for LOCALS used in the media page -
 //    and possible other pages too.  Should we create analogous
 //    tasks for each page??? Which could bleed DRY.
-// 2. Find a Gulp plugin which can create these vars (i.e. pictureFiles),
-//    by processing a fileglob.  And even spread it into albums by 
-//    directory node(s).
-//    Plugins maybe:
-//    - https://github.com/adam-lynch/glob-to-vinyl
-//    - https://www.npmjs.org/package/vinyl-transform (see inject JS into file)
-//    - https://www.npmjs.org/package/gulp-filter
 gulp.task('jade', function () {
-    var pictureFiles = [
-	{src: 'pictures/beeldig/onstage1.jpg', src_t: 'pictures/beeldig/onstage1.jpg', rel: 'beeldig'},
-	{src: 'pictures/beeldig/john1.jpg', src_t: 'pictures/beeldig/john1.jpg', rel: 'beeldig'},
-	{src: 'pictures/beeldig/pose1.jpg', src_t: 'pictures/beeldig/pose1.jpg', rel: 'beeldig'}
-    ];
+  //console.log([path.join(paths.templates,'*.jade'), '!./'+path.join(paths.templates+'media.jade')]);
+
+  return gulp.src([path.join(paths.templates,'*.jade'), '!./'+path.join(paths.templates+'media.jade')])
+    .pipe(jade())
+    .pipe(gulp.dest('./'))
+    .pipe(connect.reload()); });
+
+gulp.task('media.jade', function () {
   
-    var YOUR_LOCALS = {	pictureFiles: pictureFiles };
+  function getAlbums() {
+    var albums = {};
+    var albumName = null;
   
-    return gulp.src(path.join(paths.templates,'*.jade'))
-      .pipe(jade({locals: YOUR_LOCALS}))
-      .pipe(gulp.dest('./'))
-      .pipe(connect.reload());
+    glob('pictures/*/**', {sync: true}, function(err, files) {
+      (function(err,files,cb) {
+	for (i=0; i < files.length; i++) {
+	
+	  var stat = fs.statSync(files[i]);
+	
+	  if (stat.isDirectory()) {
+	    albumName = path.basename(files[i]);
+	    this[albumName] = [];
+	  } else if (albumName) {
+	    this[albumName].push({src: files[i], src_t: files[i], rel: albumName});
+	  }
+	}
+      }).call(albums,err,files);
+    });
+    return albums;
+  }  
+  
+  var jade_locals = {albums: getAlbums()};
+			
+  return gulp.src(paths.templates+'media.jade')
+    .pipe(jade({locals: jade_locals}))
+    .pipe(gulp.dest('./'))
+    .pipe(connect.reload());
 });
 
 //  Stylus: compile sass to css task - uses Libsass
@@ -91,7 +110,7 @@ gulp.task('stylus', function() {
   return gulp.src(path.join(paths.stylus, '*.styl'))
     .pipe(stylus({errors: true}))
     .pipe(gulp.dest('./css/'))
-    .pipe(notify({ message: 'Stylus files dropped!' }))
+    //.pipe(notify({ message: 'Stylus files dropped!' }))
     .pipe(connect.reload());  
 });
 
@@ -131,7 +150,7 @@ gulp.task('connect', function() {
 
 gulp.task('watch', ['connect'], function() {
   gulp.watch(path.join(paths.stylus, '*.styl'), ['stylus']);
-  gulp.watch(path.join(paths.templates, '**/*.jade'), ['jade']);
+  //gulp.watch(path.join(paths.templates, '**/*.jade'), ['jade']);
   gulp.watch(path.join(paths.javascript, '**/*.js'), ['js-reload']);
 });
 
@@ -140,14 +159,6 @@ gulp.task('watch', ['connect'], function() {
 // gulp.task('watch', function() {
 
 //  watchStuff('stylus');
-
-// });
-
-//  Watch and Livereload using RUBY Sass
-//===========================================
-// gulp.task('rubywatch', function() {
-
-//  watchStuff('rubysass');
 
 // });
 
@@ -161,9 +172,6 @@ gulp.task('debug', function() {
 
 //  Default Gulp Task
 //===========================================
-gulp.task('default', ['fileinclude', 'jade', 'stylus', 'connect', 'watch'], function() {
+gulp.task('default', ['fileinclude', 'jade', 'media.jade', 'stylus', 'connect', 'watch'], function() {
   debug = debug || false;
 });
-
-//gulp.task('useruby', ['fileinclude', 'rubysass', 'connect', 'rubywatch'], function() {
-//});

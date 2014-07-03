@@ -18,7 +18,13 @@ block content
     div#page-intro
     h1 Media page
     section#content.bg-white
-      #gallery
-        each item in pictureFiles
-          a(href=item['src'], rel=item['rel'])
-            img(src=item['src_t'])
+      - console.log('### In media.jade:' )
+      - console.log(albums)
+      //- console.log(likethis)
+      //- console.log(foo)
+      each files, albumName in albums
+        h3.capitalize= albumName
+        .gallery
+          each item in files
+            a(href=item['src'], rel=item['rel'])
+              img(src=item['src_t'])
