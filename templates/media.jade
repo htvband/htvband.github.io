@@ -26,5 +26,5 @@ block content
         h3.capitalize= albumName
         .gallery
           each item in files
-            a(href=item['src'], rel=item['rel'])
+            a(href=item['src'], rel=item['rel'], title=item['title'])
               img(src=item['src_t'])

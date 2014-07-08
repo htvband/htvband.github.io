@@ -91,7 +91,7 @@ gulp.task('media.jade', function () {
 	    albumName = path.basename(files[i]);
 	    this[albumName] = [];
 	  } else if (albumName) {
-	    this[albumName].push({src: files[i], src_t: files[i], rel: albumName});
+	    this[albumName].push({src: files[i], src_t: files[i], rel: albumName, title: path.basename(files[i])});
 	  }
 	}
       }).call(albums,err,files);
