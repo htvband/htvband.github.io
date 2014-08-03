@@ -80,6 +80,8 @@ gulp.task('media.jade', function () {
   function getAlbums() {
     var albums = {};
     var albumName = null;
+
+    var reThumb = new RegExp("^.*_t\.", "i");
   
     glob('pictures/*/**', {sync: true}, function(err, files) {
       (function(err,files,cb) {
@@ -90,8 +92,11 @@ gulp.task('media.jade', function () {
 	  if (stat.isDirectory()) {
 	    albumName = path.basename(files[i]);
 	    this[albumName] = [];
-	  } else if (albumName) {
-	    this[albumName].push({src: files[i], src_t: files[i], rel: albumName, title: path.basename(files[i])});
+	  // Only if there's a thumb
+	  } else if (albumName && reThumb.test(files[i])) {
+	    var title = path.basename(files[i]).replace("_t.", ".");
+	    var urlOriginal = files[i].replace("_t.", ".");
+	    this[albumName].push({src: urlOriginal, src_t: files[i], rel: albumName, title: title});
 	  }
 	}
       }).call(albums,err,files);
