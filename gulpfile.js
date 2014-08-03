@@ -133,45 +133,18 @@ gulp.task('connect', function() {
   });
 });
 
-// function watchStuff(task) {
-//   // Listen on port 35729
-//   server.listen(35729, function (err) {
-//     if (err) {
-//       return console.error(err);
-//       //TODO use notify to log a message on Sass compile fail and Beep
-//     };
-
-//     //Watch task for sass
-//     //gulp.watch(path.join(paths.sass, '**/*.scss'), [task]);
-//     gulp.watch(path.join(paths.stylus, '**/*.styl'), [task]);    
-
-//     // watch task for gulp-includes
-//     gulp.watch(path.join(paths.templates, '**/*.html'), ['fileinclude']);
-
-//   });
-// }
-
 gulp.task('watch', ['connect'], function() {
   gulp.watch(path.join(paths.stylus, '*.styl'), ['stylus']);
-  //gulp.watch(path.join(paths.templates, '**/*.jade'), ['jade']);
+  gulp.watch(path.join(paths.templates, '**/*.jade'), ['jade']);
+  gulp.watch(path.join(paths.templates, '**/media.jade'), ['media.jade']);
   gulp.watch(path.join(paths.javascript, '**/*.js'), ['js-reload']);
 });
-
-//  Watch and Livereload using Libsass
-//===========================================
-// gulp.task('watch', function() {
-
-//  watchStuff('stylus');
-
-// });
-
 
 gulp.task('debug', function() {
   debug = true;
   gutil.log( gutil.colors.green('RUNNING IN DEBUG MODE') );
   gulp.start('default');
 });
-
 
 //  Default Gulp Task
 //===========================================
