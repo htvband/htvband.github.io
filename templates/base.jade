@@ -25,16 +25,23 @@ html
           input#mobile-toggle(type='checkbox')
           label.mobile-toggle(for='mobile-toggle', onclick='')
 
-          -var menu = {'HTV band': 'index.html', 'media': 'media.html', 'shows': 'shows.html', 'contact': 'contact.html'};
+          - var menu = {}
+          - menu['HTV band'] = {template: 'index.html', class: 'nav-button'}
+          - menu['shows'] = {template: 'shows.html', class: ''}
+          - menu["foto's"] = {template: 'media.html', class: ''}
+          - menu["video's"] = {template: 'videos.html', class: ''}
+          - menu['bio'] = {template: 'bio.html', class: ''}
+          - menu['contact'] = {template: 'contact.html', class: ''}
+          
           nav#nav-primary
             ul
               each val,key in menu
                 if active === key
-                  li.active
-                    a(href=val, title=key)= key
+                  li.active(class=val.class)
+                    a(href=val.template)= key
                 else
-                  li
-                    a(href=val, title=key)= key
+                  li(class=val.class)
+                    a(href=val.template)= key
 
     .all-mighty-wrapper
       block content

@@ -86,7 +86,7 @@ header .inner-wrapper
   width: 100%
   z-index: 14
   background-color: #000
-  box-shadow: 0px 2px 6px #303030;
+  box-shadow: 0px 2px 6px ##303030;
 
 header .inner-wrapper .really-inner-wrapper
   margin: 0 auto
@@ -119,14 +119,20 @@ header #nav-primary
   float: left;
   display: inline;
   margin: 0;
+  padding: 4px
 
 #nav-primary li:after
-  content: " / ";
   color: #fff;
 
 #nav-primary li:last-child:after
   content: "";
   display: none;
+
+#nav-primary .nav-button
+  background-color: #663300
+  padding: 4p
+  border-radius: 4px
+  margin-right: 8px
 
 #nav-primary a
   color: #fff;
@@ -136,8 +142,15 @@ header #nav-primary
   font-weight: bold;
 
 #nav-primary a:hover, #nav-primary a:active,
-#nav-primary ul li.active a:link
-  border-bottom: 2px solid #fff;
+#nav-primary ul li.active a:link,
+#nav-primary ul li.active a
+  border-bottom: 3px solid #663300;
+
+#nav-primary ul li.active.nav-button a,
+  border-bottom: none
+
+#nav-primary .nav-button a:hover
+  border: none
 
 /* Mobile nav */
 
@@ -324,6 +337,20 @@ section.body .subsection div .icons-gallery
     float: none
     margin-bottom: 20px
 
+  #nav-primary .nav-button
+    background-color: #000
+    color: #fff
+    border: none
+    border-radius: 0
+    padding: 6x 0
+    margin: 0
+
+  #nav-primary .nav-button a
+    color: #fff
+
+  #nav-primary ul li.active.nav-button a,
+    border-bottom: 2px solid #663300
+
   #nav-primary li:after
     content: none;
 
@@ -339,7 +366,7 @@ section.body .subsection div .icons-gallery
     color: #fff
     font-weight: normal
 
-  #nav-primary ul li a:hover
+  #nav-primary ul li a
     border: none
 
    /* Responsive: content */
