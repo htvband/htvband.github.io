@@ -23,11 +23,11 @@
 #cboxOverlay{background: rgba(0,0,0,0.8);}
 
 #colorbox{outline:0;}
-    #cboxContent{margin-top:20px;background:#000}
+    #cboxContent{padding-bottom: 20px;background: #000;}
         .cboxIframe{background:#fff;}
         #cboxError{padding:50px; border:1px solid #ccc;}
         #cboxLoadedContent{border:0px solid #000; background:#fff;}
-        #cboxTitle{position:absolute; top:-20px; left:0; color:#ccc;}
+        #cboxTitle{position:absolute; bottom: 0; left:4px; color:#ccc; font-size: 1.1em;}
         #cboxCurrent{position:absolute; top:-20px; right:0px; color:#ccc;}
         #cboxLoadingGraphic{background:url(img/loading.gif) no-repeat center center;}
 
