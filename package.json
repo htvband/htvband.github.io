@@ -17,6 +17,7 @@
     "glob-to-vinyl": "0.0.1",
     "vinyl-fs": "~0.3.4",
     "map-stream": "~0.1.0",
-    "glob": "~4.0.3"
+    "glob": "~4.0.3",
+    "markdown": "~0.5.0"
   }
 }

@@ -15,7 +15,6 @@ var gulp = require('gulp'),
     //sass = require('gulp-sass'),
     stylus = require('gulp-stylus'),
 
-    markdown = require('gulp-markdown'),    
     fileinclude = require('gulp-file-include'),
     rename = require('gulp-rename'),
     notify = require('gulp-notify'),
@@ -27,17 +26,19 @@ var gulp = require('gulp'),
     server = lr(),
     jade = require('gulp-jade'),
     path = require("path"),
+    
+    markdown = require('markdown').markdown,
 
     glob = require('glob');
     fs = require('fs');
-
 
 var debug = false;
 
 var paths = {
   templates: './templates/',
   stylus: './css/',
-  javascript: './js/'
+  javascript: './js/',
+  content: './content/'
 };
 
 // fileinclude: grab partials from templates and render out html files
@@ -69,8 +70,10 @@ gulp.task('fileinclude', function() {
 //    tasks for each page??? Which could bleed DRY.
 gulp.task('jade', function () {
 
+  var jade_locals = {markdown: markdown, content: paths.content, fs: fs};
+  
   return gulp.src([path.join(paths.templates,'*.jade'), '!./'+path.join(paths.templates+'photos.jade')])
-    .pipe(jade())
+    .pipe(jade({locals: jade_locals}))
     .pipe(gulp.dest('./'))
     .pipe(connect.reload()); });
 
@@ -90,12 +93,15 @@ gulp.task('photos.jade', function () {
 	
 	  if (stat.isDirectory()) {
 	    albumName = path.basename(files[i]);
-	    this[albumName] = [];
+	    this[albumName] = {'files': [], 'info': undefined};
 	  // Only if there's a thumb
 	  } else if (albumName && reThumb.test(files[i])) {
 	    var title = path.basename(files[i]).replace("_t.", ".");
 	    var urlOriginal = files[i].replace("_t.", ".");
-	    this[albumName].push({src: urlOriginal, src_t: files[i], rel: albumName, title: title});
+	    this[albumName].files.push({src: urlOriginal, src_t: files[i], rel: albumName, title: title});
+	  } else if (path.basename(files[i]) === 'description.md') {
+	    var albumDescription = fs.readFileSync(files[i], 'utf8');
+	    this[albumName].description = markdown.toHTML(albumDescription);
 	  }
 	}
       }).call(albums,err,files);
@@ -103,6 +109,7 @@ gulp.task('photos.jade', function () {
     return albums;
   }  
   
+  //console.log(getAlbums());
   var jade_locals = {albums: getAlbums()};
 			
   return gulp.src(paths.templates+'photos.jade')

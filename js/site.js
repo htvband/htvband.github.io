@@ -1,4 +1,5 @@
 jQuery(document).ready(function () {
+  if (jQuery('.gallery') && typeof(jQuery().justifiedGallery) === 'function') {
   jQuery('.gallery').on('jg.rowflush', function() {
       jQuery(this).find("> a").colorbox({
 	  // maxWidth : "85%",
@@ -16,5 +17,11 @@ jQuery(document).ready(function () {
     'randomize':false, 
     randomize: true
     //'rel': 'beeldig'
-  });  
+  });
+  }
+  
+  jQuery(document.links).filter(function() {
+    return this.hostname != window.location.hostname;
+  }).attr('target', '_blank');
+  
 });

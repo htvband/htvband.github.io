@@ -1,0 +1,13 @@
+block vars
+  - var active = "shows";
+
+extends base
+
+prepend head
+  script(type='text/javascript', src='js/jquery.min.js')
+  script(type='text/javascript', src='js/site.js')
+
+block content
+  div#main.body.home.bg-white
+    section#content.bg-white
+      != markdown.toHTML(fs.readFileSync(content + 'shows.md', 'utf8'))

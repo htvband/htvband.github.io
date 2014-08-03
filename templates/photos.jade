@@ -15,21 +15,11 @@ prepend head
 
 block content
   div#main.body.home.bg-white
-    h1 Media pages!
     section#content.bg-white
-      h3 this is conteeeeentttt
-      p Fucking shite
-      - console.log('### In media.jade:' )
-      - console.log(albums)
-      //- console.log(likethis)
-      //- console.log(foo)
-      each files, albumName in albums
-        h3.capitalize= albumName
+      each data, albumName in albums
+        h2.capitalize= albumName
+        != data.description
         .gallery
-          each item in files
+          each item in data.files
             a(href=item['src'], rel=item['rel'], title=item['title'])
               img(src=item['src_t'])
-
-    h1 Media pages!
-    h1 Media pages!
-    h1 Media pages!
