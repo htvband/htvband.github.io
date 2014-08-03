@@ -9,12 +9,12 @@ jQuery(document).ready(function () {
 	  current : ""
       });
   }).justifiedGallery({
-    'lastRow': 'justify', 
+    //'lastRow': 'hide', 
     //'rowHeight':100, 
     'fixedHeight':false,
     'captions':true, 
     'randomize':false, 
-    'margins':1
+    randomize: true
     //'rel': 'beeldig'
   });  
 });
