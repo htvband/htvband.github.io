@@ -5,7 +5,6 @@
 body
   margin 0
   padding 0
-  //background-color #000
   color #000305
   font-size 87.5%
   font-family 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
@@ -40,23 +39,6 @@ hr
 h3
   border-bottom: 1px solid #000
 
-/* Anchors */
-
-// a {outline: 0;}
-// a img {border: 0px; text-decoration: none;}
-// a:link, a:visited {
-// 	color: #C74350;
-// 	padding: 0 1px;
-// 	text-decoration: underline;
-// }
-// a:hover, a:active {
-// 	color: #fff;
-// 	text-decoration: none;
-// }
-
-// h1 a:hover {
-//     background-color: inherit
-// }
 	
 /* Paragraphs */
 div.line-block, p
@@ -83,7 +65,93 @@ header, section, footer,
 aside, nav, article, figure
   display: block;
 
-/***** Layout *****/
+.clearfix:after
+  clear: both
+  content: "."
+  display: block
+  font-size: 0
+  height: 0
+  visibility: hidden
+
+/* Header (logo, nav) */
+
+header
+  clear: both
+  height: 100px
+  padding: 0
+  width: 100%
+
+header .inner-wrapper
+  position: fixed
+  width: 100%
+  z-index: 14
+  background-color: #000
+  box-shadow: 0px 2px 6px #303030;
+
+header .inner-wrapper .really-inner-wrapper
+  margin: 0 auto
+  position: relative
+  width: 980px
+
+header #logo
+  float: left
+  position: relative
+
+header #nav-primary
+  float: right
+
+#nav-primary
+  font-size: 1.6em;
+  float: right;
+  display: block;
+  margin-top: 3%
+  padding: 0;
+  text-align: center;
+  //max-width: 40%;
+
+#nav-primary ul
+  float: left;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+#nav-primary li
+  float: left;
+  display: inline;
+  margin: 0;
+
+#nav-primary li:after
+  content: " / ";
+  color: #fff;
+
+#nav-primary li:last-child:after
+  content: "";
+  display: none;
+
+#nav-primary a
+  color: #fff;
+  display: inline-block;
+  margin: 0px 0.5em;
+  text-decoration: none;
+  font-weight: bold;
+
+#nav-primary a:hover, #nav-primary a:active,
+#nav-primary ul li.active a:link
+  border-bottom: 2px solid #fff;
+
+/* Mobile nav */
+
+#mobile-toggle, .mobile-toggle
+  display: none;
+
+/* Content */
+
+.all-mighty-wrapper
+  position: relative
+  width: 980px
+  background-color: #fff
+  margin: 0 auto
+
 .body
   clear: both;
   margin: 0 auto;
@@ -115,74 +183,6 @@ section.body .subsection div .icons-gallery
   margin: 0 auto;
   width: 100%;
 
-/*	Header */
-
-header
-  width: 100%;
-  background: #000;
-  height: 100px;
-
-/* Banner, main nav */
-
-#banner
-  position: fixed
-  //margin: 0 auto;
-  padding: 0;
-  //width: 100%
-  height: 100px;
-  background: #000;
-  box-shadow: 0px 2px 6px #303030;
-  z-index: 14
-
-#banner .logo
-  float: left;
-  margin-top: 4px;
-  margin-left: 20%;
-
-#banner nav
-  font-size: 1.6em;
-  float: right;
-  display: block;
-  margin: 1.5em 20% auto auto
-  padding: 0;
-  text-align: center;
-  max-width: 40%;
-
-#banner nav ul
-  float: left;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-#banner nav li
-  float: left;
-  display: inline;
-  margin: 0;
-
-#banner nav li:after
-  content: " / ";
-  color: #fff;
-
-#banner nav li:last-child:after
-  content: "";
-  display: none;
-
-#banner nav a
-  color: #fff;
-  display: inline-block;
-  margin: 0px 0.5em;
-  text-decoration: none;
-  font-weight: bold;
-
-#banner nav a:hover, #banner nav a:active,
-#banner nav ul li.active a:link
-  border-bottom: 2px solid #fff;
-
-/* Mobile menu */
-
-#mobile-toggle, .mobile-toggle
-  display: none;
-
 /* Body */
 
 #main
@@ -193,7 +193,6 @@ header
   margin: 0 auto;
   margin-bottom: 0.8em;
   overflow: hidden;
-  width: 760px;
 
 #page-intro
   padding: 130px 0;
@@ -244,11 +243,6 @@ header
 .capitalize:first-letter
   text-transform: uppercase
 
-#cboxOverlay,
-#cboxWrapper
-#colorbox
-  z-index: 0
-
 /*  Footer */
 
 #contentinfo
@@ -256,7 +250,6 @@ header
   text-align: right;
 
 /* Responsive */
-
 
 @media screen and (max-width: 960px)
   body
@@ -274,24 +267,102 @@ header
     font-size: 1.143em
   h6
     font-size: 1em
-    
+
+  /* Responsive: header, logo, nav */
+  
   header
-    position: fixed
-    width: 96%
-    max-width: 100%
-    min-width: 100%
-    padding: 0
-    //height: 100px
+    height: auto;
+    
+  header .inner-wrapper
     position: relative
+    text-align: center
+    box-shadow: none
+    height: 135px;
+  
+  header .inner-wrapper .really-inner-wrapper
+    width: auto
+
+  header #logo
+    float: none
+
+  #nav-primary
+    display: none
+    width: 100%
+    max-width: 100%
+
+  #mobile-toggle
+    display: none
+    margin-top: 50px
+    
+  #mobile-toggle:checked ~ #nav-primary, #mobile-toggle:checked ~ #nav-primary ul
+    display: block
+    opacity: 1
+
+  .mobile-toggle
+    cursor: pointer
+    display: block
+    position: relative
+    clear: both
+
+  #mobile-toggle:checked + .mobile-toggle:after
+    content: "sluit menu"
+
+  .mobile-toggle:after
+    display: block
+    /* -moz-box-sizing: border-box; */
+    background: none repeat scroll 0 0 #fff
+    color: #000
+    content: "open menu"
+    margin: 5px auto
+    margin-top: 10px
+    width: 20%
+    padding: 4px
+    text-align: center
+    
+  #nav-primary ul
+    display: none
+    float: none
+    margin-bottom: 20px
+
+  #nav-primary li:after
+    content: none;
+
+  #nav-primary ul li
+    background-color: #000
+    color: #fff
+    width: 100%
+    text-align: center
+    padding: 6px 0
+    font-size: 0.8em
+    
+  #nav-primary ul li a
+    color: #fff
+    font-weight: normal
+
+  #nav-primary ul li a:hover
+    border: none
+
+   /* Responsive: content */
+   
+  .all-mighty-wrapper
+    width: auto
+
+  #page-intro img
+    display: none
 
   #main
     float: none
     border: none
     position: relative
 
+  .body
+    clear: both
+    margin: 0 auto
+    min-width: 100%
+    max-width: 100%
+    
   #content
     width: auto;
-    //margin: 0 auto
     margin-left: 5%
 
   #page-intro
@@ -308,98 +379,14 @@ header
     margin: 0;
     font-size: 2em
 
-  header #banner
-    text-align: center
-    float: left
-    position: relative
-    //height: 100px;
-    height: auto;
-    width: 100%
-    z-index: 0
-    //margin: 0 auto
-    background-color: #fff
-
-  header #banner .logo
-    float: none
-    position: relative
-    background-color: #000
-    margin-left: 0
-
-  .body
-    clear: both
-    margin: 0 auto
-    min-width: 100%
-    max-width: 100%
-
-  #banner nav
-    display: none
-    width: 100%
-    max-width: 100%
-    margin: 0
-    margin-top: -40px
-
-  #page-intro img
-    display: none
-
-  #mobile-toggle
-    display: none
-    margin-top: 50px
-    
-  #mobile-toggle:checked ~ nav, #mobile-toggle:checked ~ nav ul
-    display: block
-    opacity: 1
-
-  .mobile-toggle
-    cursor: pointer
-    display: block
-    position: relative
-
-  #mobile-toggle:checked + .mobile-toggle:after
-    content: "sluit menu"
-
-  .mobile-toggle:after
-    display: block
-    /* -moz-box-sizing: border-box; */
-    background: none repeat scroll 0 0 #51C1F1
-    color: #fff
-    content: "open menu"
-    margin: 50px auto
-    margin-top: 10px
-    width: 20%
-    padding: 4px 10px 8px 10px
-    text-align: center
-    background-color: #000
-    
-  #banner nav ul
-    display: none
-    float: none
-    margin-bottom: 20px
-
-  #banner nav li:after
-    content: none;
-
-  nav ul li
-    background-color: #000
-    color: #fff
-    width: 100%
-    text-align: center
-    padding: 6px 0
-    font-size: 0.8em
-    
-  #banner nav ul li a
-    color: #fff
-    font-weight: normal
-
-  #banner nav ul li a:hover
-    border: none
-
   section.body .subsection
     width: 50%
 
   .justified-gallery
     width: 50%
 
-  // #cboxOverlay
+  // XXX in case the colorbox really needs crawl under the header.
+  //#cboxOverlay
   //#colorbox
   //#cboxWrapper
   //  z-index: 0

@@ -11,29 +11,33 @@ html
       link(rel='stylesheet' , href='css/main.css' , type='text/css')
 
   body#index
-    header
-      div#banner.body
-        div(class='logo')
-          a(href='index.html')
-            img(src='img/logo.png' , height='90px', alt='Logo HTV Band')
+    //#container
+    header.clearfix
+      .inner-wrapper
+        .really-inner-wrapper
 
-        block vars
+          div(id='logo')
+            a(href='index.html')
+              img(src='img/logo.png' , height='90px', alt='Logo HTV Band')
 
-        input#mobile-toggle(type='checkbox')
-        label.mobile-toggle(for='mobile-toggle', onclick='')
+          block vars
 
-        -var menu = {'HTV band': 'index.html', 'media': 'media.html', 'shows': 'shows.html', 'contact': 'contact.html'};
-        nav
-          ul
-            each val,key in menu
+          input#mobile-toggle(type='checkbox')
+          label.mobile-toggle(for='mobile-toggle', onclick='')
+
+          -var menu = {'HTV band': 'index.html', 'media': 'media.html', 'shows': 'shows.html', 'contact': 'contact.html'};
+          nav#nav-primary
+            ul
+              each val,key in menu
                 if active === key
                   li.active
                     a(href=val, title=key)= key
                 else
                   li
                     a(href=val, title=key)= key
-              
-    block content
+
+    .all-mighty-wrapper
+      block content
 
     // // content (ie markdown) here
     // footer#contentinfo.body
