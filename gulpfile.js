@@ -64,18 +64,17 @@ gulp.task('fileinclude', function() {
 // });
 
 // TODO:
-// 1. Think about separation for LOCALS used in the media page -
+// 1. Think about separation for LOCALS used in the photos page -
 //    and possible other pages too.  Should we create analogous
 //    tasks for each page??? Which could bleed DRY.
 gulp.task('jade', function () {
-  //console.log([path.join(paths.templates,'*.jade'), '!./'+path.join(paths.templates+'media.jade')]);
 
-  return gulp.src([path.join(paths.templates,'*.jade'), '!./'+path.join(paths.templates+'media.jade')])
+  return gulp.src([path.join(paths.templates,'*.jade'), '!./'+path.join(paths.templates+'photos.jade')])
     .pipe(jade())
     .pipe(gulp.dest('./'))
     .pipe(connect.reload()); });
 
-gulp.task('media.jade', function () {
+gulp.task('photos.jade', function () {
   
   function getAlbums() {
     var albums = {};
@@ -106,7 +105,7 @@ gulp.task('media.jade', function () {
   
   var jade_locals = {albums: getAlbums()};
 			
-  return gulp.src(paths.templates+'media.jade')
+  return gulp.src(paths.templates+'photos.jade')
     .pipe(jade({locals: jade_locals}))
     .pipe(gulp.dest('./'))
     .pipe(connect.reload());
@@ -141,7 +140,7 @@ gulp.task('connect', function() {
 gulp.task('watch', ['connect'], function() {
   gulp.watch(path.join(paths.stylus, '*.styl'), ['stylus']);
   gulp.watch(path.join(paths.templates, '**/*.jade'), ['jade']);
-  gulp.watch(path.join(paths.templates, '**/media.jade'), ['media.jade']);
+  gulp.watch(path.join(paths.templates, '**/photos.jade'), ['photos.jade']);
   gulp.watch(path.join(paths.javascript, '**/*.js'), ['js-reload']);
 });
 
@@ -153,6 +152,6 @@ gulp.task('debug', function() {
 
 //  Default Gulp Task
 //===========================================
-gulp.task('default', ['fileinclude', 'jade', 'media.jade', 'stylus', 'connect', 'watch'], function() {
+gulp.task('default', ['fileinclude', 'jade', 'photos.jade', 'stylus', 'connect', 'watch'], function() {
   debug = debug || false;
 });
