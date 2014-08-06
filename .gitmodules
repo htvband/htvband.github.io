@@ -1,6 +1,6 @@
 [submodule "modules/justified-gallery"]
 	path = modules/justified-gallery
-	url = https://bobslee@bitbucket.org/htvband/justified-gallery.git
+	url = https://bitbucket.org/htvband/justified-gallery.git
 [submodule "modules/colorbox"]
 	path = modules/colorbox
-	url = git@bitbucket.org:htvband/colorbox
+	url = https://bitbucket.org/htvband/colorbox.git
