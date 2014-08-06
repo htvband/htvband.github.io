@@ -1,6 +1,0 @@
-[submodule "modules/justified-gallery"]
-	path = modules/justified-gallery
-	url = https://bitbucket.org/htvband/justified-gallery.git
-[submodule "modules/colorbox"]
-	path = modules/colorbox
-	url = https://bitbucket.org/htvband/colorbox.git
