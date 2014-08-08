@@ -14,9 +14,7 @@ jQuery(document).ready(function () {
     //'rowHeight':100, 
     'fixedHeight':false,
     'captions':true, 
-    'randomize':false, 
-    randomize: true
-    //'rel': 'beeldig'
+    'randomize':false
   });
   }
   
